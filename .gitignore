@@ -1,0 +1,10 @@
+# Frontend Ignored Files
+recipefrontend/node_modules/
+
+
+# Backend Ignored Files
+recipebackend/.env
+recipebackend/.env*local
+recipebackend/.env.local.*
+recipebackend/__pycache__/*
+recipeenv/*

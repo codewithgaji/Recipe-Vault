@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RecipeVault Design System
+   A warm, appetizing palette inspired by rustic kitchens and fresh ingredients
+*/
+
+@layer base {
+  :root {
+    /* Warm cream background */
+    --background: 40 33% 97%;
+    --foreground: 24 10% 15%;
+
+    /* Slightly warmer cards */
+    --card: 40 40% 99%;
+    --card-foreground: 24 10% 15%;
+
+    --popover: 40 40% 99%;
+    --popover-foreground: 24 10% 15%;
+
+    /* Terracotta orange - primary brand */
+    --primary: 16 65% 50%;
+    --primary-foreground: 40 40% 99%;
+
+    /* Sage green - secondary accent */
+    --secondary: 140 25% 45%;
+    --secondary-foreground: 40 40% 99%;
+
+    /* Muted warm tones */
+    --muted: 40 20% 92%;
+    --muted-foreground: 24 10% 45%;
+
+    /* Golden accent */
+    --accent: 45 80% 55%;
+    --accent-foreground: 24 10% 15%;
+
+    /* Keep destructive red */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 40% 99%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 16 65% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom recipe-specific tokens */
+    --difficulty-easy: 140 50% 45%;
+    --difficulty-medium: 45 80% 50%;
+    --difficulty-hard: 0 72% 51%;
+    
+    --rating-star: 45 93% 58%;
+    --rating-empty: 40 20% 85%;
+
+    --sidebar-background: 40 30% 96%;
+    --sidebar-foreground: 24 10% 25%;
+    --sidebar-primary: 16 65% 50%;
+    --sidebar-primary-foreground: 40 40% 99%;
+    --sidebar-accent: 40 25% 92%;
+    --sidebar-accent-foreground: 24 10% 20%;
+    --sidebar-border: 40 20% 88%;
+    --sidebar-ring: 16 65% 50%;
+  }
+
+  .dark {
+    --background: 24 15% 10%;
+    --foreground: 40 30% 95%;
+
+    --card: 24 15% 13%;
+    --card-foreground: 40 30% 95%;
+
+    --popover: 24 15% 13%;
+    --popover-foreground: 40 30% 95%;
+
+    --primary: 16 70% 55%;
+    --primary-foreground: 24 15% 10%;
+
+    --secondary: 140 30% 40%;
+    --secondary-foreground: 40 40% 99%;
+
+    --muted: 24 15% 18%;
+    --muted-foreground: 40 20% 60%;
+
+    --accent: 45 75% 50%;
+    --accent-foreground: 24 15% 10%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 40% 99%;
+
+    --border: 24 15% 20%;
+    --input: 24 15% 20%;
+    --ring: 16 70% 55%;
+
+    --sidebar-background: 24 15% 8%;
+    --sidebar-foreground: 40 30% 90%;
+    --sidebar-primary: 16 70% 55%;
+    --sidebar-primary-foreground: 24 15% 10%;
+    --sidebar-accent: 24 15% 15%;
+    --sidebar-accent-foreground: 40 30% 90%;
+    --sidebar-border: 24 15% 18%;
+    --sidebar-ring: 16 70% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
