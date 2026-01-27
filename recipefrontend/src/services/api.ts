@@ -1,6 +1,6 @@
 import { Recipe, RecipeCreate, RecipeUpdate } from "@/types/recipe";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "recipe-vault-production-43e6.up.railway.app";
 
 export class ApiError extends Error {
   status: number;
