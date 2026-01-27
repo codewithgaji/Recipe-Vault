@@ -402,7 +402,7 @@ def init_db():
         if db.query(database_models.Recipe).first():
            return # Data already exists
         
-        
+
         for recipe in RECIPES:
             data = recipe.model_dump()
 
@@ -516,13 +516,13 @@ async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db_session)
 
 @app.post("/recipes")
 def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
-  exists = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe.id).first()
-  if exists:
-    raise HTTPException(status_code=400, detail=f"Recipe {recipe.id} Already Exists")
-  # new_recipe = database_models.Recipe(**recipe.model_dump())
-  # db.add(new_recipe)
-  # db.commit()
-  # db.refresh(new_recipe)
+  # exists = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe.id).first()
+  # if exists:
+  #   raise HTTPException(status_code=400, detail=f"Recipe {recipe.id} Already Exists")
+  # # new_recipe = database_models.Recipe(**recipe.model_dump())
+  # # db.add(new_recipe)
+  # # db.commit()
+  # # db.refresh(new_recipe)
 
   # The above won't work because it is actually a Nested Model
   data = recipe.model_dump()
