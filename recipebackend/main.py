@@ -399,6 +399,10 @@ def init_db():
 
     db = SessionLocal()
     try:
+        if db.query(database_models.Recipe).first():
+           return # Data already exists
+        
+        
         for recipe in RECIPES:
             data = recipe.model_dump()
 
