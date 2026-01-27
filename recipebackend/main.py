@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, UploadFile, File
-from schemas import Recipe, IngredientItem, Difficulty, Category
+from schemas import Recipe, IngredientItem, Difficulty, Category, RecipeCreate
 from datetime import date
 from sqlalchemy.orm import Session
 import database_models
@@ -511,7 +511,7 @@ async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db_session)
  # DATABASE POST RECIPES ENDPOINT
 
 @app.post("/recipes")
-def add_recipe(recipe: Recipe, db: Session = Depends(get_db_session)):
+def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
   exists = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe.id).first()
   if exists:
     raise HTTPException(status_code=400, detail=f"Recipe {recipe.id} Already Exists")

@@ -40,6 +40,19 @@ class Recipe(BaseModel):
   updated_at: date
 
 
+class RecipeCreate(BaseModel):
+  title: str
+  description: str
+  ingredients: list[IngredientItem] # Nested Model
+  instructions: list[str]
+  prep_time: int
+  cook_time: int
+  servings: int
+  difficulty: Difficulty
+  category: Category
+  image_url: Optional[HttpUrl] = None
+  rating: int
+
 # class RecipeCreate(BaseModel):
 #   id: int
 #   title: str

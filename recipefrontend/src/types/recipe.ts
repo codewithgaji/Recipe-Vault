@@ -5,7 +5,7 @@ export interface IngredientItem {
 
 export type Difficulty = "easy" | "medium" | "hard";
 
-export type Category = "Breakfast" | "Lunch" | "Dinner" | "Dessert" | "Snack" | "Beverage";
+export type Category = "breakfast" | "lunch" | "dinner" | "dessert" | "snack" | "beverage";
 
 export interface Recipe {
   id: number;
@@ -52,5 +52,5 @@ export interface RecipeUpdate {
   rating?: number;
 }
 
-export const CATEGORIES: Category[] = ["Breakfast", "Lunch", "Dinner", "Dessert", "Snack", "Beverage"];
+export const CATEGORIES: Category[] = ["breakfast", "lunch", "dinner", "dessert", "snack", "beverage"];
 export const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];

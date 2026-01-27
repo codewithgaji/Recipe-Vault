@@ -2,7 +2,6 @@ from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, Integer, String, Date, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
 
-
 Base = declarative_base()
 
 class Recipe(Base):
@@ -18,22 +17,14 @@ class Recipe(Base):
   category = Column(String)
   image_url = Column(String)
   rating = Column(Integer)
-  created_at =Column(Date)
-  updated_at = Column(Date)
+  created_at = Column(Date, nullable=True)
+  updated_at = Column(Date, nullable=True)
 
-  # This creates an "ingredient column in Recipe and then 'back_populates' meaning it takes the connection to the 'recipe' table in db. 
-
-  # It also shows the relationship of "ingredient" column with the "Ingredient" table
   ingredients = relationship(
     "Ingredient", 
     back_populates="recipe",
-    cascade="all, delete-orphan" # To delete all fields connected to the Ingredients column
+    cascade="all, delete-orphan"
   )
-
-
-
-
-  # In RDBMS we don't use Nested Tables, hence the reason for seperate table. - DATABASE NORMALIZATION
 
 class Ingredient(Base):
   __tablename__ = "ingredients"

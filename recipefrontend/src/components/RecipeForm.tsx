@@ -47,7 +47,7 @@ const defaultFormData: RecipeCreate = {
   cook_time: 30,
   servings: 4,
   difficulty: "medium",
-  category: "Dinner",
+  category: "dinner",
   image_url: "",
   rating: 3,
 };
