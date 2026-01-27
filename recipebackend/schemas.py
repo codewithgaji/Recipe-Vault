@@ -1,6 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 from enum import Enum
 from datetime import date
+from typing import Optional
 
 
 class IngredientItem(BaseModel):
@@ -13,7 +14,7 @@ class Difficulty(str, Enum): # Never use BaseModel with enum but str because tha
   MEDIUM = "medium"
   HARD = "hard"
 
-class Category(Enum):
+class Category(str, Enum):
   BREAKFAST = "breakfast"
   LUNCH = "lunch"
   DINNER = "dinner"
@@ -27,13 +28,13 @@ class Recipe(BaseModel):
   title: str
   description: str
   ingredients: list[IngredientItem] # Nested Model
-  instructions: str
+  instructions: list[str]
   prep_time: int
   cook_time: int
   servings: int
   difficulty: Difficulty # Since we are picking one item from Difficulty class
   category: Category
-  image_url: str
+  image_url: Optional[HttpUrl] = None
   rating: int
   created_at: date
   updated_at: date
