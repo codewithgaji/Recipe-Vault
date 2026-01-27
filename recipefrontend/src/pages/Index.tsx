@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { RecipeFilters } from "@/components/RecipeFilters";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -24,13 +24,13 @@ const Index = () => {
   // Debounced search for API
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
-  // Update debounced search after typing stops
-  useState(() => {
+  // Proper debounce effect for search input
+  useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
     }, 300);
     return () => clearTimeout(timer);
-  });
+  }, [search]);
 
   // Modal states
   const [formOpen, setFormOpen] = useState(false);

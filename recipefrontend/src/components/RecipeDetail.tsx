@@ -1,4 +1,4 @@
-import { Clock, Users, ChefHat, Edit, Trash2, X } from "lucide-react";
+import { Clock, Users, ChefHat, Edit, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StarRating } from "@/components/ui/star-rating";
 import { DifficultyBadge } from "@/components/ui/difficulty-badge";
@@ -41,6 +41,8 @@ export function RecipeDetail({
   if (!recipe) return null;
 
   const totalTime = recipe.prep_time + recipe.cook_time;
+  const ingredients = recipe.ingredients || [];
+  const instructions = recipe.instructions || [];
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -58,14 +60,6 @@ export function RecipeDetail({
               <ChefHat className="w-24 h-24 text-muted-foreground/30" />
             </div>
           )}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm hover:bg-background"
-            onClick={onClose}
-          >
-            <X className="w-5 h-5" />
-          </Button>
         </div>
 
         <div className="p-6 space-y-6">
@@ -153,19 +147,23 @@ export function RecipeDetail({
           {/* Ingredients */}
           <div>
             <h3 className="font-display text-xl font-semibold mb-4">Ingredients</h3>
-            <ul className="space-y-2">
-              {recipe.ingredients.map((ingredient, index) => (
-                <li
-                  key={index}
-                  className="flex items-baseline gap-3 py-1.5 border-b border-border/50 last:border-0"
-                >
-                  <span className="font-medium text-primary min-w-[100px]">
-                    {ingredient.quantity}
-                  </span>
-                  <span>{ingredient.name}</span>
-                </li>
-              ))}
-            </ul>
+            {ingredients.length > 0 ? (
+              <ul className="space-y-2">
+                {ingredients.map((ingredient, index) => (
+                  <li
+                    key={index}
+                    className="flex items-baseline gap-3 py-1.5 border-b border-border/50 last:border-0"
+                  >
+                    <span className="font-medium text-primary min-w-[100px]">
+                      {ingredient.quantity}
+                    </span>
+                    <span>{ingredient.name}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-muted-foreground italic">No ingredients listed</p>
+            )}
           </div>
 
           <Separator />
@@ -173,16 +171,20 @@ export function RecipeDetail({
           {/* Instructions */}
           <div>
             <h3 className="font-display text-xl font-semibold mb-4">Instructions</h3>
-            <ol className="space-y-4">
-              {recipe.instructions.map((instruction, index) => (
-                <li key={index} className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
-                    {index + 1}
-                  </span>
-                  <p className="pt-1">{instruction}</p>
-                </li>
-              ))}
-            </ol>
+            {instructions.length > 0 ? (
+              <ol className="space-y-4">
+                {instructions.map((instruction, index) => (
+                  <li key={index} className="flex gap-4">
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
+                      {index + 1}
+                    </span>
+                    <p className="pt-1">{instruction}</p>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p className="text-muted-foreground italic">No instructions listed</p>
+            )}
           </div>
         </div>
       </DialogContent>

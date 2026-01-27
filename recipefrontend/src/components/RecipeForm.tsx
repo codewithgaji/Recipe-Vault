@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { ImageUpload } from "@/components/ImageUpload";
 import {
   Select,
   SelectContent,
@@ -174,15 +175,10 @@ export function RecipeForm({
             </div>
 
             <div>
-              <Label htmlFor="image_url">Image URL (optional)</Label>
-              <Input
-                id="image_url"
-                type="url"
+              <Label>Image (optional)</Label>
+              <ImageUpload
                 value={formData.image_url}
-                onChange={(e) =>
-                  setFormData({ ...formData, image_url: e.target.value })
-                }
-                placeholder="https://example.com/image.jpg"
+                onChange={(url) => setFormData({ ...formData, image_url: url })}
               />
             </div>
           </div>
