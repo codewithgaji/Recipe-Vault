@@ -20,7 +20,7 @@ app = FastAPI()
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins = "https://recipe-vault-pearl.vercel.app",
+  allow_origins = ["https://recipe-vault-pearl.vercel.app", "http://localhost:8080"],
   allow_headers = ["*"],
   allow_credentials = True,
   allow_methods = ["*"]
