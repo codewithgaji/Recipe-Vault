@@ -8,3 +8,4 @@ recipebackend/.env*local
 recipebackend/.env.local.*
 recipebackend/__pycache__/*
 recipeenv/*
+recipefrontendINCOMPLETE/*
