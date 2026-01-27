@@ -394,7 +394,7 @@ import json
 @app.on_event("startup")
 def init_db():
     # DEV ONLY: wipe tables so you see updates
-    database_models.Base.metadata.drop_all(bind=engine) # This wipes the table
+    # database_models.Base.metadata.drop_all(bind=engine) # This wipes the table
     database_models.Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
@@ -555,7 +555,7 @@ def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
 
  # DATABASE UPDATE RECIPES - ENDPOINT
 
-@app.put("/recipes{recipe_id}")
+@app.put("/recipes/{recipe_id}")
 def updated_recipes(recipe_id: int, recipe:Recipe, db: Session = Depends(get_db_session)):
   db_recipe_exists = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe_id).first()
   if not db_recipe_exists: # Treating None value pairs first
@@ -591,7 +591,7 @@ def updated_recipes(recipe_id: int, recipe:Recipe, db: Session = Depends(get_db_
 
  # DATABASE DELETE RECIPES - ENDPOINTS
 
-@app.delete("/recipes/{recipe.id}")
+@app.delete("/recipes/{recipe_id}")
 def delete_recipe(recipe_id: int, db: Session = Depends(get_db_session)):
   recipe_exists = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe_id).first()
   if not recipe_exists:
