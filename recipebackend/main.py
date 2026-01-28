@@ -512,10 +512,6 @@ async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db_session)
 
 
 
- # DATABASE POST RECIPES ENDPOINT
-
-@app.post("/recipes")
-def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
   # exists = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe.id).first()
   # if exists:
   #   raise HTTPException(status_code=400, detail=f"Recipe {recipe.id} Already Exists")
@@ -525,17 +521,27 @@ def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
   # # db.refresh(new_recipe)
 
   # The above won't work because it is actually a Nested Model
-  data = recipe.model_dump()
-  ingredient_data = data.pop("ingredients", [])
 
-  new_recipe = database_models.Recipe(**data)
-  new_recipe.ingredients = [
-    database_models.Ingredient(**ing) for ing in ingredient_data
-  ]
-  db.add(new_recipe)
-  db.commit()
-  db.refresh(new_recipe)
-  return {"message": f"{new_recipe.title} added successfully", "recipe": new_recipe}
+
+ # DATABASE POST RECIPES ENDPOINT
+
+@app.post("/recipes")
+def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
+  try:
+    data = recipe.model_dump()
+    ingredient_data = data.pop("ingredients", [])
+
+    new_recipe = database_models.Recipe(**data)
+    new_recipe.ingredients = [
+      database_models.Ingredient(**ing) for ing in ingredient_data
+    ]
+    db.add(new_recipe)
+    db.commit()
+    db.refresh(new_recipe)
+    return {"message": f"{new_recipe.title} added successfully", "recipe": new_recipe}
+  except Exception as e:
+     print("Create Recipe Error:", repr(e))
+     raise HTTPException(status_code=500, detail=str(e))
 
     
 
