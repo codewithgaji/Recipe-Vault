@@ -530,6 +530,7 @@ def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
   try:
     data = recipe.model_dump()
     ingredient_data = data.pop("ingredients", [])
+    data.pop("id", None)  # Remove id if present to allow auto-generation
     
     # ✅ convert enums to their string values
     if hasattr(data.get("difficulty"), "value"):
@@ -551,6 +552,7 @@ def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
     return {"message": f"{new_recipe.title} added successfully", "recipe": new_recipe}
   except Exception as e:
      print("Create Recipe Error:", repr(e))
+     print("Insert Data: ", data)
      raise HTTPException(status_code=500, detail=str(e))
 
     
