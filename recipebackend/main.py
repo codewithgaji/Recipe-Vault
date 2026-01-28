@@ -1,11 +1,12 @@
 from fastapi import FastAPI, Depends, HTTPException, UploadFile, File
 from schemas import Recipe, IngredientItem, Difficulty, Category, RecipeCreate
 from datetime import date
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 import database_models
 from database import SessionLocal, engine
 from fastapi.middleware.cors import CORSMiddleware
 import cloudinary.uploader
+
 
 
 
@@ -466,10 +467,11 @@ def welcome():
 
 @app.get("/recipes")
 async def get_recipes(db: Session = Depends(get_db_session)):
-  data_exists = db.query(database_models.Recipe).all()
-  if not data_exists:
-    raise HTTPException(status_code=404, detail="No Reciptes Found")
-  return  data_exists
+  recipes = (db.query(database_models.Recipe).options(joinedload(database_models.Recipe.ingredients)).all())
+
+  if not recipes:
+    raise HTTPException(status_code=404, detail="No Recipes Found")
+  return  recipes
 
 
 
