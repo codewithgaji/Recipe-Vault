@@ -530,6 +530,16 @@ def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db_session)):
   try:
     data = recipe.model_dump()
     ingredient_data = data.pop("ingredients", [])
+    
+    # ✅ convert enums to their string values
+    if hasattr(data.get("difficulty"), "value"):
+        data["difficulty"] = data["difficulty"].value
+    if hasattr(data.get("category"), "value"):
+        data["category"] = data["category"].value
+
+    # ✅ convert HttpUrl to string
+    if data.get("image_url") is not None:
+        data["image_url"] = str(data["image_url"])
 
     new_recipe = database_models.Recipe(**data)
     new_recipe.ingredients = [

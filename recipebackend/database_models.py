@@ -1,6 +1,7 @@
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, Integer, String, Date, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.sql import func
 
 Base = declarative_base()
 
@@ -17,8 +18,8 @@ class Recipe(Base):
   category = Column(String)
   image_url = Column(String)
   rating = Column(Integer)
-  created_at = Column(Date, nullable=True)
-  updated_at = Column(Date, nullable=True)
+  created_at = Column(Date, server_default=func.current_date())
+  updated_at = Column(Date, server_default=func.current_date(), onupdate=func.current_date())
 
   ingredients = relationship(
     "Ingredient", 
