@@ -639,7 +639,7 @@ def upload_recipe_image(
     db: Session = Depends(get_db_session)
 ):
   
-  db_recipe = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe_id).first()
+  db_recipe = db.query(database_models.Recipe).filter(database_models.Recipe.id == recipe_id).first() # Check if the recipe exists in the database using the provided recipe_id. If it doesn't exist, raise a 404 error.
 
   if not db_recipe:
     raise HTTPException(status_code=404, detail="Recipe not found")
