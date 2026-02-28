@@ -25,4 +25,4 @@ for filename in os.listdir(ASSETS_DIR):
     continue
   
   result = cloudinary.uploader.upload(path, folder="recipe_vault") # upload to Cloudinary
-  print(filename, "=>", result["secure_url"])
+  print(filename, "=>", result["secure_url"]) # This is used to print the url of the cloudinary file upload.
