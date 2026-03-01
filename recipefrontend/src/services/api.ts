@@ -92,7 +92,7 @@ export const recipeApi = {
   // DELETE /recipes/:id - Delete a recipe
   async deleteRecipe(id: number): Promise<void> {
     const response = await fetchWithTimeout(`${API_BASE_URL}/recipes/${id}`, {
-      method: "DELETE",
+      method: "DELETE", // This is used to delete a recipe with it's id
     });
     if (!response.ok) {
       const errorText = await response.text();
