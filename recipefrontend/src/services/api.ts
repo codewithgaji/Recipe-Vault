@@ -98,5 +98,5 @@ export const recipeApi = {
       const errorText = await response.text();
       throw new ApiError(errorText || `HTTP error ${response.status}`, response.status);
     }
-  },
+  },    
 };

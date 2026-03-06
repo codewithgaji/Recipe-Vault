@@ -35,7 +35,7 @@ class Recipe(BaseModel):
   difficulty: Difficulty # Since we are picking one item from Difficulty class
   category: Category
   image_url: Optional[HttpUrl] = None
-  rating: int
+  rating: int       
   created_at: date
   updated_at: date
 
