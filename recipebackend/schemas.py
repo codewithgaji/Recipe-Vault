@@ -14,6 +14,8 @@ class Difficulty(str, Enum): # Never use BaseModel with enum but str because tha
   MEDIUM = "medium"
   HARD = "hard"
 
+
+# This is the Category schema
 class Category(str, Enum):
   BREAKFAST = "breakfast"
   LUNCH = "lunch"
@@ -23,6 +25,7 @@ class Category(str, Enum):
   BEVERAGE = "beverage"
 
 
+# This is the recipe schema
 class Recipe(BaseModel):
   id: int
   title: str
@@ -39,7 +42,7 @@ class Recipe(BaseModel):
   created_at: date
   updated_at: date
 
-
+# This uses the base model
 class RecipeCreate(BaseModel):
   title: str
   description: str
