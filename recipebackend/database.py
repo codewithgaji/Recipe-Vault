@@ -20,6 +20,3 @@ engine = create_engine(db_url) # This is used to create a connection to the data
           
 SessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
 
-
-
-# CLOUDINARY SETUP

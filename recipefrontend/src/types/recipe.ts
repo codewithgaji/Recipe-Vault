@@ -6,7 +6,7 @@ export interface IngredientItem {
 export type Difficulty = "easy" | "medium" | "hard";
 
 export type Category = "breakfast" | "lunch" | "dinner" | "dessert" | "snack" | "beverage";
-
+// These are the data types for the fastapi frontend
 export interface Recipe {
   id: number;
   title: string;
