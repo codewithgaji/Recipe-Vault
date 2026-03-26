@@ -56,6 +56,10 @@ class RecipeCreate(BaseModel):
   image_url: Optional[HttpUrl] = None
   rating: int
 
+
+
+
+# No longer needed
 # class RecipeCreate(BaseModel):
 #   id: int
 #   title: str

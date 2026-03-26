@@ -5,6 +5,7 @@ from sqlalchemy.sql import func
 
 Base = declarative_base()
 
+# This uses the base class model.
 class Recipe(Base):
   __tablename__ = "recipes"
   id = Column(Integer, primary_key=True, index=True, autoincrement=True)

@@ -141,7 +141,7 @@ const Index = () => {
         )}
       </main>
 
-      {/* Recipe Form Modal */}
+      {/* Recipe Form Modal*/}
       <RecipeForm
         open={formOpen}
         onClose={() => setFormOpen(false)}
